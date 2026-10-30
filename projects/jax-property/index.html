@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'self'">
+<title>Jacksonville Property &amp;amp; Flood Risk · Case study | GeoKnight GIS</title>
+<meta name="description" content="Duval County parcels, assessor records, FEMA flood zones and Florida sales data joined in one tested PostGIS database, explorable on an interactive map.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GeoKnight GIS">
+<meta property="og:title" content="Jacksonville Property &amp;amp; Flood Risk · Case study | GeoKnight GIS">
+<meta property="og:description" content="Duval County parcels, assessor records, FEMA flood zones and Florida sales data joined in one tested PostGIS database, explorable on an interactive map.">
+<meta property="og:url" content="https://knightchrism.github.io/projects/jax-property/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@geoknight0015">
+<meta name="theme-color" content="#0b1f3a">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../styles.css?v=20261030">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap navin">
+<a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">GK</span><span>GeoKnight <b>GIS</b></span></a>
+<nav aria-label="Main"><a href="../../services.html">Services</a><a href="../../work.html" aria-current="page">Work</a><a href="../../about.html">About</a><a href="../../contact.html">Contact</a><a class="btn btn-sm" href="https://cal.com/christopher-uzhh5z" rel="noopener noreferrer">Book a call</a></nav>
+</div></header>
+<main id="main">
+<section class="band pagehead"><div class="wrap"><p class="muted small"><a href="../../work.html">← All work</a> · Self-initiated demonstration on public data</p>
+<p class="eyebrow gold">Case study · PostGIS · dbt · Leaflet</p><h1>Jacksonville Property &amp; Flood Risk</h1><p class="lead">Duval County parcels, assessor records, FEMA flood zones and Florida sales data joined in one tested PostGIS database, explorable on an interactive map.</p><p class="cta"><a class="btn" href="https://knightchrism.github.io/jax-property-intelligence/" rel="noopener noreferrer">Live demo</a> <a class="btn btn-ghost" href="https://github.com/knightchrism/jax-property-intelligence" rel="noopener noreferrer">Repository</a></p></div></section>
+<section class="band"><div class="wrap prose"><h2>Problem</h2><p>Property questions (what is this parcel worth, is it in a flood zone, what sold nearby) need county parcels, the assessor tax roll, FEMA flood zones and state sales records joined together. Those sources arrive as shapefiles, pipe-delimited text and REST services, with invalid geometries, duplicate addresses and inconsistent ZIPs. The goal: one trustworthy PostGIS database, without silently losing a row.</p><h2>Data sources</h2><ul><li>Duval County parcel GIS (<code>Parcels.shp</code>), City of Jacksonville / Duval County public records</li><li>Duval County Property Appraiser real estate tax roll</li><li>FEMA National Flood Hazard Layer (public domain), from FEMA's ArcGIS REST service</li><li>Florida Department of Revenue sales data file and land-use codes</li></ul><figure class="diagram"><img src="../../assets/diagrams/jax-property-intelligence.svg" alt="Architecture diagram: data layer, rendered from the Mermaid diagram in the jax-property-intelligence README" loading="lazy"><figcaption>data layer, rendered from the Mermaid diagram in the jax-property-intelligence README</figcaption></figure><h2>Key decisions</h2><ul><li><b>Repair geometry with <code>make_valid</code>, never edit the source.</b> Invalid/missing geometry counts are printed before load.</li><li><b>One projected CRS: EPSG:2236</b> (Florida East, US feet), so parcel and flood-zone areas and overlay percentages are meaningful.</li><li><b>Raw → clean → QC tables for flood zones.</b> Every repaired shape is compared to its raw original by area.</li><li><b>Flood overlay per parcel.</b> Each parcel gets the FEMA zones it touches, whether each is a Special Flood Hazard Area, and the percent of the parcel covered.</li><li><b>dbt-tested models</b> with 13 data tests on every build.</li><li><b>No owner names published.</b> The public explorer shows address, market and assessed value only.</li></ul><h2>Verified results</h2><div class="stats"><div class="stat"><b>12,288 / 12,288</b><span>FEMA flood zones loaded, 0 lost</span><small>Source: project README</small></div><div class="stat"><b>48</b><span>invalid flood shapes repaired, 0 sq ft area lost</span><small>Source: project README</small></div><div class="stat"><b>75,878</b><span>FL DOR sales loaded; 99.8% matched to a parcel</span><small>Source: project README</small></div><div class="stat"><b>28,800</b><span>qualified market sales</span><small>Source: project README</small></div><div class="stat"><b>10,552</b><span>exact duplicate addresses removed, each traced</span><small>Source: project README</small></div><div class="stat"><b>413 → 37</b><span>ZIP values normalized</span><small>Source: project README</small></div><div class="stat"><b>405,722</b><span>parcels in one tested summary table</span><small>Source: project README</small></div><div class="stat"><b>13</b><span>dbt data tests on every build</span><small>Source: project README</small></div></div></div></section><section class="band navy" id="contact"><div class="wrap contact">
+<div><p class="eyebrow gold">Contact</p><h2>Tell me about your data.</h2>
+<p>Send a short note about your area, your data and what you need. I reply by email, usually within one business day, or you can book a call directly.</p></div>
+<div class="cta-stack"><a class="btn" href="https://cal.com/christopher-uzhh5z" rel="noopener noreferrer">Book a call</a>
+<a class="btn btn-ghost" href="mailto:geoknight0015@gmail.com">geoknight0015@gmail.com</a></div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap footin">
+<div><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">GK</span><span>GeoKnight <b>GIS</b></span></a>
+<p class="muted">Geospatial data services · Jacksonville, Florida</p></div>
+<nav aria-label="Footer"><a href="../../services.html">Services</a><a href="../../work.html">Work</a><a href="../../about.html">About</a><a href="../../resume.html">Resume</a><a href="../../contact.html">Contact</a></nav>
+<nav aria-label="Legal"><a href="../../privacy.html">Privacy</a><a href="../../security.html">Data security</a><a href="../../terms.html">Terms</a></nav>
+<p class="muted small">© <span id="yr">2026</span> GeoKnight GIS</p>
+</div></footer>
+<script src="../../assets/js/year.js" defer></script>
+</body>
+</html>
