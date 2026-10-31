@@ -112,3 +112,10 @@ table{max-width:100%}
 .rform .row2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .rform .btns{display:flex;flex-wrap:wrap;gap:10px}.rform button{cursor:pointer;border:0;font:inherit}
 .rnote{border-left:4px solid var(--gold);background:var(--alt);padding:14px 18px;border-radius:8px;margin-top:20px}
+
+/* See it in motion */
+.motion .motion-lead{max-width:640px;color:#c6d2e6;margin:0 0 1.4em}
+.clip{margin:0 0 1.4em;max-width:1100px}
+.clip video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#02050b;border-radius:var(--r);border:2px solid var(--gold);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.clip figcaption{margin-top:.7em;font-size:.82rem;color:#aab8cc}
+.motion .cta{margin:0}
