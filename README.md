@@ -6,3 +6,7 @@ Preview copy of the `redesign` branch of knightchrism/knightchrism.github.io. Al
 
 ## Hero (Oct 30, 2026)
 The home hero is the 3D night globe restored from the live site (MapLibre GL 5.24.0, vendored in `assets/globe/vendor/`; NASA GIBS Blue/Black Marble with a sun-based day/night blend, USGS imagery and live USGS feeds). Selected layers from the animated Florida hero are blended on top, geo-registered to the globe (`assets/globe/overlay.js`): Gulf Stream particles, flights, Cape launches, city-light twinkle and a gold scan sweep (illustrative). On screens under 640px a static poster image is shown instead. The previous animated Florida hero is shelved, unreferenced, in `shelved/florida-hero/`.
+
+## License
+
+Copyright (c) 2026 GeoKnight GIS. All rights reserved. No copying or reuse without written permission; see [LICENSE](LICENSE). Third-party libraries and data keep their own licenses and terms (listed in [LICENSE](LICENSE)).
